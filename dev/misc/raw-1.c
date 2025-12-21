@@ -54,3 +54,17 @@ t_transfer_option get_transfer_option(t_cost one, t_cost two)
 	}
 	return (option);
 }
+
+
+t_option option;
+	option.cost = 7;
+	option.steps[0] = (t_step){.cost = 3, .movement = M_RA};
+	option.steps[1] = (t_step){.cost = 2, .movement = M_RB};
+	option.steps[2] = (t_step){.cost = 2, .movement = M_PA};
+
+	char **steps = get_steps(option);
+	while (*steps)
+	{
+		printf("D0:%s\n", *steps);
+		steps++;
+	}

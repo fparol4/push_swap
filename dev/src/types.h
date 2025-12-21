@@ -12,25 +12,6 @@ typedef enum
     M_RRR,
 } t_movement;
 
-const char *get_movement(t_movement mov)
-{
-    const char *movements[10];
-
-    movements[0] = "PA";
-    movements[1] = "PB";
-    movements[2] = "SA";
-    movements[3] = "SB";
-    movements[4] = "RA";
-    movements[5] = "RB";
-    movements[6] = "RR";
-    movements[7] = "RRA";
-    movements[8] = "RRB";
-    movements[9] = "RRR";
-    if (mov < 0 || mov > 9)
-        return (0);
-    return (movements[mov]);
-}
-
 typedef enum {
 	STACK_ONE = 1,
 	STACK_TWO = 2,
@@ -58,12 +39,12 @@ typedef struct
 
 typedef struct
 {
-	int times;
-	t_movement mov;
+	int cost;
+	t_movement movement;
 } t_step;
 
 typedef struct
 {
 	int cost;
-	t_step steps[4];
+	t_step steps[10];
 } t_option;

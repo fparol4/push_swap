@@ -14,6 +14,7 @@
 # define MAIN_H
 
 # include <stdio.h>
-# include "src/types.h"
+# include <stdlib.h>
+// # include "src/types.h"
 
 #endif
