@@ -32,7 +32,7 @@ typedef struct
 
 typedef struct
 {
-	int stack_id;
+	int stack;
 	int upward;
 	int downward;
 } t_target_cost;

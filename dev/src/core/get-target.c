@@ -1,12 +1,6 @@
 # include "../../main.h"
-// # include "./get-cost.c"
 
-/**
- * Get the min value above target
- * or the maximum value.
- * EX: 3, { 2, 5, 4 } => 4
- */
-t_target_cost get_maxmin(t_stack stack, int value)
+t_target_cost get_maxmin_cost(t_stack stack, int value)
 {
 	int i;
 	int max;
@@ -29,12 +23,7 @@ t_target_cost get_maxmin(t_stack stack, int value)
 	return ((get_target_cost(stack, target)));
 }
 
-/**
- * Get the max value below me
- * or the minimum value.
- * EX: 3, { 2, 5, 4 } => 2
- */
-t_target_cost get_minmax(t_stack stack, int value)
+t_target_cost get_minmax_cost(t_stack stack, int value)
 {
 	int i;
 	int min;

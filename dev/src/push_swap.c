@@ -1,45 +1,55 @@
 #include "../main.h"
-# include "./types.h"
-# include "./utils.c"
-#include "./math.c"
-#include "./core/get-best-option.c"
-#include "./core/get-cost.c"
-#include "./core/get-target.c"
 
-int main()
+// Mesmo que eu não saiba eu preciso agir.
+// Agir sem saber = coragem.
+// Agir sem ter certeza = confianca.
+// Agir sem ter certeza do resultado = Fé
+// Agir é o remédio
+// Acão é o verdadeiro remédio desta vida.
+// Apenas através da acão.
+// Não me importa o que o buddha pensava.
+// Nem a indicacão de ninguém
+// Eu sei que a única saída é a acão
+// e a simplicidade do pensamento
+
+t_option get_best_option(t_stack one, t_stack two)
 {
-	t_stack s_one = {
-		.id = STACK_ONE,
-		.size = 4,
-		.items = (int[7]) {  }
-	};
-
-	t_stack s_two = {
-		.id = STACK_TWO,
-		.size = 3,
-		.items = (int[7]) { 6, 7, 1, 2, 3, 4, 5 }
-	};
-
 	int i = 0;
 	t_option best_option;
-	while (i < s_one.size)
+	while (i < one.size)
 	{
-		t_target_cost item_cost = get_target_cost(s_one, i);
-		t_target_cost target_cost = get_minmax(s_two, s_one.items[i]);
-		t_option transfer_option = get_best_option(item_cost, target_cost);
-		// printf("D0:%d\n", best_option.cost);
+		t_target_cost item_c = get_target_cost(one, i);
+		t_target_cost target_c = get_minmax_cost(two, one.items[i]);
+		t_option transfer_option = get_option(item_c, target_c);
 		if (i == 0 || transfer_option.cost < best_option.cost)
 			best_option = transfer_option;
 		i++;
 	}
+	return best_option;
+}
 
-	printf("D0:%d\n", best_option.cost);
-	printf("D0:%d\n", best_option.steps[2].cost);
-	printf("D0:%d\n", best_option.steps[2].movement);
-	char **steps = get_steps(best_option);
-	while (*steps)
+void push_swap(t_stack one, t_stack two)
+{
+	// 1. Ordenar do A para o B até que sobrem 3.
+	// 2. Ordenar os 3 que sobrarem no A.
+	// 3. Trazer de volta do B para o A.
+
+	char *steps[196];
+	while (one.size > 2)
 	{
-		printf("D0:%s\n", *steps);
-		steps++;
+		t_option option = get_best_option(one, two);
+
 	}
+}
+
+int main()
+{
+	t_stack s_one = {
+		.id = STACK_ONE, .size = 3,
+		.items = (int[7]){ 4, 3 }
+	};
+	t_stack s_two = {.id = STACK_TWO, .size = 4,
+		.items = (int[7]){2, 1, 7, 6, 5}
+	};
+	push_swap(s_one, s_two);
 }
