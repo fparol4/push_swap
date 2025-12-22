@@ -16,6 +16,21 @@
 #include <string.h>
 #include <threads.h>
 
+typedef struct s_node {
+	void *value;
+	struct s_node *next;
+	struct s_node *prev;
+} t_node;
+
+
+typedef struct
+{
+	int size;
+	t_stack_id id;
+	t_node *head;
+	t_node *tail;
+} t_lstack;
+
 t_pswap start(int items[], int size)
 {
 	t_stack *one;
@@ -50,26 +65,19 @@ t_stack *n_stack(int items[], int size)
 	return stack;
 }
 
-void p_stack(t_stack *stack) {
-	int i = 0;
-	while (i < stack->size)
-		printf("D0:%d\n", stack->items[i++]);
+void p_stack(t_lstack *stack) {
+	t_node *node;
+
+	node = stack->head;
+	while (node)
+	{
+		printf("P:%p\n", node);
+		printf("V:%d\n", *(int *)node->value);
+		node = node->next;
+	}
 }
 
-typedef struct s_node {
-	void *value;
-	struct s_node *next;
-	struct s_node *prev;
-} t_node;
 
-
-typedef struct
-{
-	int size;
-	t_stack_id id;
-	t_node *head;
-	t_node *tail;
-} t_lstack;
 
 t_node *new_node(void *value, t_node *next, t_node *prev)
 {
@@ -104,19 +112,82 @@ t_lstack *new_lstack(t_stack_id id, int items[], int size)
 			c_node->next = new_node(items + i, NULL, c_node);
 			c_node->next->prev = c_node;
 			c_node = c_node->next;
-			if (i == size - 1)
-				stack->tail = c_node;
 		}
+		if (i == size - 1)
+			stack->tail = c_node;
 		i++;
 	}
 	return (stack);
 }
 
 
+void	lstack_swap(t_lstack *stack)
+{
+	t_node *node;
+
+	if (!stack->head || !stack->head->next)
+		return ;
+	node = stack->head->next;
+	stack->head->prev = node;
+	stack->head->next = node->next;
+	node->prev = NULL;
+	node->next = stack->head;
+	stack->head = node;
+}
+
+void	lstack_rot(t_lstack *stack)
+{
+	t_node *node;
+
+	if (!stack->head || stack->head == stack->tail)
+		return ;
+
+	if (stack->size == 2)
+		return lstack_swap(stack);
+
+	node = stack->head;
+	stack->head->prev = stack->tail->prev;
+	stack->head->prev->next = stack->head;
+	stack->tail->next = stack->head->next;
+	stack->tail->next->prev = stack->tail;
+	stack->head->next = NULL;
+	stack->tail->prev = NULL;
+	stack->head = stack->tail;
+	stack->tail = node;
+}
+
 int main(int argc, char *argv[])
 {
-	t_lstack *one = new_lstack(1, (int []) { 4, 2, 7, 0, 0, 0, 0 }, 7);
-	t_lstack *two = new_lstack(2, (int []) {}, 0);
+
+	// t_lstack *one = new_lstack(1, (int []) { 4, 2, 7, 0, 0, 0, 0 }, 7);
+	t_lstack *one = new_lstack(1, (int []) { 4, 2, 5, 3 }, 4);
+	// printf("D0:%d\n", *(int *) one->head->value);
+	// printf("D0:%d\n", *(int *) one->head->next->value);
+	// printf("D0:%p\n", one->head);
+	// printf("D0:%p\n", one->head->next);
+	// printf("D0:%p\n", one->head->prev);
+	// printf("D0:%d\n", *(int *) one->tail->value);
+	// printf("D0:%d\n", *(int *) one->tail->prev->value);
+	// printf("D0:%p\n", one->tail);
+	// printf("D0:%p\n", one->tail->next);
+	// printf("D0:%p\n", one->tail->prev);
+	p_stack(one);
+	lstack_rot(one);
+	printf("----\n");
+	// printf("D0:%d\n", *(int *) one->head->value);
+	// printf("D0:%d\n", *(int *) one->head->next->value);
+	// printf("D0:%p\n", one->head);
+	// printf("D0:%p\n", one->head->next);
+	// printf("D0:%p\n", one->head->prev);
+	// printf("D0:%d\n", *(int *) one->tail->value);
+	// printf("D0:%d\n", *(int *) one->tail->prev->value);
+	// printf("D0:%p\n", one->tail);
+	// printf("D0:%p\n", one->tail->next);
+	// printf("D0:%p\n", one->tail->prev);
+
+	// lstack_swap(ne);
+	p_stack(one);
+	// t_lstack *two = new_lstack(2, (int []) {}, 0);
 	return 0;
 }
 
