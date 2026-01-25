@@ -51,3 +51,8 @@ void ft_secfree(void **ptrs, int size);
 void ft_node_free(t_node *node);
 void ft_node_add_tail(t_node **head, t_node *node);
 t_node *ft_node_new(int value);
+
+t_path *ft_sort_three(t_stack *s);
+t_path *ft_calc_cheap(t_stack *stack_s, t_stack *stack_d);
+void ft_move(e_mov mov, t_stack *a, t_stack *b);
+void ft_path_exec(t_path *path, t_pswap *pswap);

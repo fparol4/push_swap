@@ -34,9 +34,9 @@ char	*ft_moven(e_mov mov)
 
 void ft_move(e_mov mov, t_stack *a, t_stack *b)
 {
-    if (mov == MOV_PA && b->head)
+    if (mov == MOV_PA && b && b->head)
         ft_stack_add_head(a, ft_stack_pop_head(b));
-    else if (mov == MOV_PB && a->head)
+    else if (mov == MOV_PB && a && a->head)
         ft_stack_add_head(b, ft_stack_pop_head(a));
     else if (mov == MOV_SA)
         ft_stack_swap(a);
