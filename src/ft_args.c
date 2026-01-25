@@ -13,10 +13,14 @@ void ft_handle_error(t_node **head, char **split)
     {
         i = 0;
         while (split[i])
-            free(split[i++]);
+        {
+            free(split[i]);
+            split[i] = NULL;
+            i++;
+        }
         free(split);
     }
-    ft_putendl_fd("Error", 2);
+    ft_putendl_fd("[WARN] Invalid arguments", 2);
     exit(1);
 }
 
@@ -40,8 +44,11 @@ t_node *ft_handle_args(int argc, char **argv)
             if (!ft_vatoi(split[j]))
                 ft_handle_error(&head, split);
             ft_node_add_tail(&head, ft_node_new(ft_atoi(split[j])));
-            free(split[j++]);
+            j++;
         }
+        j = 0;
+        while (split[j])
+            free(split[j++]);
         free(split);
     }
     return (head);
