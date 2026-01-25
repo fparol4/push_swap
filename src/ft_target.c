@@ -12,7 +12,9 @@ t_item *ft_get_item(t_stack *s, t_node *node)
     item->node = node;
     item->stack = s->id;
     item->cost.upward = node->index;
-    item->cost.downward = s->size - node->index;
+    item->cost.downward = 0;
+    if (node->index != 0)
+        item->cost.downward = s->size - node->index;
     return (item);
 }
 

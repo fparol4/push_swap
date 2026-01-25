@@ -27,13 +27,6 @@ typedef enum e_mov
     MOV_RRR
 } e_mov;
 
-typedef enum e_path
-{
-	P_UPWARD = 1,
-	P_DOWNWARD = 2,
-	P_MIDDLE = 3
-} e_path;
-
 typedef struct t_step
 {
 	e_mov	mov;
