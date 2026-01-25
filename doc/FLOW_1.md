@@ -14,7 +14,5 @@ CHECKPOINT #1
 ---
 
 WON [#1]:
-- [ ] Rewrite the cost functions
-	- [ ] t_item *ft_get_target(int value, t_stack *stack);
-		t_item_cost = { int upward, int downward };
-- [ ] Rewrite the structs
+- [X] Rewrite the cost functions
+- [X] Rewrite the structs

@@ -1,6 +1,6 @@
 #include "../push-swap.h"
 
-const char	*ft_movn(e_mov mov)
+const char	*ft_moven(e_mov mov)
 {
 	if (mov == MOV_PA)
 		return (S_PA);

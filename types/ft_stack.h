@@ -1,7 +1,7 @@
 #ifndef PSWAP_STACK_H
 #define PSWAP_STACK_H
 
-# include "../push-swap.h"
+# include "../lib/libft/libft.h"
 
 typedef enum e_stack
 {

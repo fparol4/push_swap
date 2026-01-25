@@ -8,6 +8,7 @@
 
 /* -- HEADERS -- */
 # include "./types/ft_mov.h"
+# include "./types/ft_stack.h"
 
 /* -- GENERAL -- */
 typedef struct s_pswap
