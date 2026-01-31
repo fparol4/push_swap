@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardozo <fcardozo@student.42.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/30 21:33:35 by fcardozo         #+#    #+#             */
-/*   Updated: 2026/01/30 21:33:35 by fcardozo         ###   ########.fr       */
+/*   Created: 2026/01/30 22:59:18 by fcardozo         #+#    #+#             */
+/*   Updated: 2026/01/30 22:59:18 by fcardozo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push-swap.h"
+#include "../push_swap.h"
 
 int	ft_is_sorted(t_stack *s)
 {

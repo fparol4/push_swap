@@ -5,18 +5,36 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardozo <fcardozo@student.42.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/30 21:33:35 by fcardozo         #+#    #+#             */
-/*   Updated: 2026/01/30 21:33:35 by fcardozo         ###   ########.fr       */
+/*   Created: 2026/01/30 22:59:18 by fcardozo         #+#    #+#             */
+/*   Updated: 2026/01/30 22:59:18 by fcardozo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push-swap.h"
+#include "../push_swap.h"
+
+static t_mov	ft_select_dir(t_item *item)
+{
+	t_mov	dir;
+
+	if (item->stack == STACK_A)
+		dir = MOV_RA;
+	else
+		dir = MOV_RB;
+	if (item->cost.downward < item->cost.upward)
+	{
+		if (item->stack == STACK_A)
+			dir = MOV_RRA;
+		else
+			dir = MOV_RRB;
+	}
+	return (dir);
+}
 
 t_path	*ft_get_upward_option(t_item *item_a, t_item *item_b)
 {
 	int		rr_times;
 	int		rx_times;
-	e_mov	rx_dir;
+	t_mov	rx_dir;
 	t_step	steps[3];
 
 	if (!item_a || !item_b)
@@ -36,7 +54,7 @@ t_path	*ft_get_downward_option(t_item *item_a, t_item *item_b)
 {
 	int		rrr_times;
 	int		rrx_times;
-	e_mov	rrx_dir;
+	t_mov	rrx_dir;
 	t_step	steps[3];
 
 	if (!item_a || !item_b)
@@ -56,22 +74,14 @@ t_path	*ft_get_mixed_option(t_item *item_a, t_item *item_b)
 {
 	int		mov_a;
 	int		mov_b;
-	e_mov	dir_a;
-	e_mov	dir_b;
 	t_step	steps[3];
 
 	if (!item_a || !item_b)
 		return (NULL);
 	mov_a = ft_lowerof(item_a->cost.upward, item_a->cost.downward);
-	dir_a = (item_a->stack == STACK_A) ? MOV_RA : MOV_RB;
-	if (item_a->cost.downward < item_a->cost.upward)
-		dir_a = (item_a->stack == STACK_A) ? MOV_RRA : MOV_RRB;
 	mov_b = ft_lowerof(item_b->cost.upward, item_b->cost.downward);
-	dir_b = (item_b->stack == STACK_A) ? MOV_RA : MOV_RB;
-	if (item_b->cost.downward < item_b->cost.upward)
-		dir_b = (item_b->stack == STACK_A) ? MOV_RRA : MOV_RRB;
-	steps[0] = (t_step){.mov = dir_a, .times = mov_a};
-	steps[1] = (t_step){.mov = dir_b, .times = mov_b};
+	steps[0] = (t_step){.mov = ft_select_dir(item_a), .times = mov_a};
+	steps[1] = (t_step){.mov = ft_select_dir(item_b), .times = mov_b};
 	steps[2] = (t_step){.mov = ft_get_pushmov(item_a->stack), .times = 1};
 	return (ft_path_new(steps, 3));
 }

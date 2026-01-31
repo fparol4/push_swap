@@ -1,22 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stack_free.c                                    :+:      :+:    :+:   */
+/*   ft_stack.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardozo <fcardozo@student.42.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/30 22:59:18 by fcardozo         #+#    #+#             */
-/*   Updated: 2026/01/30 22:59:18 by fcardozo         ###   ########.fr       */
+/*   Created: 2026/01/30 23:06:55 by fcardozo         #+#    #+#             */
+/*   Updated: 2026/01/30 23:06:55 by fcardozo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#ifndef PSWAP_STACK_H
+# define PSWAP_STACK_H
 
-void	ft_stack_free(t_stack *stack)
+# include "../lib/libft/libft.h"
+
+typedef enum t_estack
 {
-	if (!stack)
-		return ;
-	if (stack->head)
-		ft_node_free(stack->head);
-	free(stack);
-}
+	OTHER = 0,
+	STACK_A = 1,
+	STACK_B = 2,
+}				t_estack;
+
+typedef struct s_item_cost
+{
+	int			upward;
+	int			downward;
+}				t_item_cost;
+
+typedef struct s_item
+{
+	t_node		*node;
+	t_estack	stack;
+	t_item_cost	cost;
+}				t_item;
+
+#endif

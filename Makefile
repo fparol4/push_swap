@@ -14,6 +14,8 @@ SRC = $(SRC_DIR)/main.c \
       $(SRC_DIR)/ft_check.c \
       $(SRC_DIR)/ft_move.c \
       $(SRC_DIR)/ft_option.c \
+      $(SRC_DIR)/ft_calc_cheap.c \
+      $(SRC_DIR)/ft_process.c \
       $(SRC_DIR)/ft_path.c \
       $(SRC_DIR)/ft_sort.c \
       $(SRC_DIR)/ft_stack_free.c \

@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardozo <fcardozo@student.42.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/30 21:33:36 by fcardozo         #+#    #+#             */
-/*   Updated: 2026/01/30 21:33:36 by fcardozo         ###   ########.fr       */
+/*   Created: 2026/01/30 22:59:19 by fcardozo         #+#    #+#             */
+/*   Updated: 2026/01/30 22:59:19 by fcardozo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push-swap.h"
+#include "../push_swap.h"
 
 void	ft_secfree(void **ptrs, int size)
 {

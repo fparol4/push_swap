@@ -5,70 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardozo <fcardozo@student.42.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/30 21:33:35 by fcardozo         #+#    #+#             */
-/*   Updated: 2026/01/30 21:33:35 by fcardozo         ###   ########.fr       */
+/*   Created: 2026/01/30 22:59:18 by fcardozo         #+#    #+#             */
+/*   Updated: 2026/01/30 22:59:18 by fcardozo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push-swap.h"
+#include "../push_swap.h"
 
-static void	ft_push_min(t_pswap *pswap)
+static t_path	*ft_singlt_move(t_mov mov)
 {
-	t_node	*curr;
-	t_node	*min;
-	int		pos;
+	t_step	step;
 
-	curr = pswap->sa->head;
-	min = curr;
-	while (curr)
-	{
-		if (*curr->value < *min->value)
-			min = curr;
-		curr = curr->next;
-	}
-	pos = min->index;
-	if (pos <= (int)(pswap->sa->size / 2))
-	{
-		while (pswap->sa->head != min)
-		{
-			ft_move(MOV_RA, pswap->sa, pswap->sb);
-			ft_putendl_fd(S_RA, 1);
-		}
-	}
-	else
-	{
-		while (pswap->sa->head != min)
-		{
-			ft_move(MOV_RRA, pswap->sa, pswap->sb);
-			ft_putendl_fd(S_RRA, 1);
-		}
-	}
-	ft_move(MOV_PB, pswap->sa, pswap->sb);
-	ft_putendl_fd(S_PB, 1);
+	step = (t_step){.mov = mov, .times = 1};
+	return (ft_path_new(&step, 1));
 }
 
-void	ft_sort_five(t_pswap *pswap)
+static t_path	*ft_doublt_move(t_mov first, t_mov second)
 {
-	t_path	*path;
+	t_step	steps[2];
 
-	while (pswap->sa->size > 3)
-		ft_push_min(pswap);
-	path = ft_sort_three(pswap->sa);
-	if (path)
-		ft_path_exec(path, pswap);
-	while (pswap->sb->size > 0)
-	{
-		ft_move(MOV_PA, pswap->sa, pswap->sb);
-		ft_putendl_fd(S_PA, 1);
-	}
+	steps[0] = (t_step){.mov = first, .times = 1};
+	steps[1] = (t_step){.mov = second, .times = 1};
+	return (ft_path_new(steps, 2));
 }
 
 t_path	*ft_sort_three(t_stack *s)
 {
-	int		a;
-	int		b;
-	int		c;
-	t_step	steps[3];
+	int	a;
+	int	b;
+	int	c;
 
 	if (s->size != 3)
 		return (NULL);
@@ -76,24 +41,14 @@ t_path	*ft_sort_three(t_stack *s)
 	b = *s->head->next->value;
 	c = *s->head->next->next->value;
 	if (a > b && b < c && a < c)
-		steps[0] = (t_step){.mov = MOV_SA, .times = 1};
-	else if (a > b && b > c)
-	{
-		steps[0] = (t_step){.mov = MOV_SA, .times = 1};
-		steps[1] = (t_step){.mov = MOV_RRA, .times = 1};
-		return (ft_path_new(steps, 2));
-	}
-	else if (a > b && b < c && a > c)
-		steps[0] = (t_step){.mov = MOV_RA, .times = 1};
-	else if (a < b && b > c && a < c)
-	{
-		steps[0] = (t_step){.mov = MOV_SA, .times = 1};
-		steps[1] = (t_step){.mov = MOV_RA, .times = 1};
-		return (ft_path_new(steps, 2));
-	}
-	else if (a < b && b > c && a > c)
-		steps[0] = (t_step){.mov = MOV_RRA, .times = 1};
-	else
-		return (NULL);
-	return (ft_path_new(steps, 1));
+		return (ft_singlt_move(MOV_SA));
+	if (a > b && b > c)
+		return (ft_doublt_move(MOV_SA, MOV_RRA));
+	if (a > b && b < c && a > c)
+		return (ft_singlt_move(MOV_RA));
+	if (a < b && b > c && a < c)
+		return (ft_doublt_move(MOV_SA, MOV_RA));
+	if (a < b && b > c && a > c)
+		return (ft_singlt_move(MOV_RRA));
+	return (NULL);
 }
