@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardozo <fcardozo@student.42.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/30 21:29:12 by fcardozo         #+#    #+#             */
-/*   Updated: 2026/01/30 21:29:12 by fcardozo         ###   ########.fr       */
+/*   Created: 2026/01/30 22:08:28 by fcardozo         #+#    #+#             */
+/*   Updated: 2026/01/30 22:08:28 by fcardozo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,12 @@ double	ft_vatof(char *s)
 		if (ft_isdigit(*s))
 			dig = 1;
 		else if (*s == '.')
+		{
 			if (dot)
 				return (0);
 			else
 				dot = 1;
+		}
 		else
 			return (0);
 		s++;

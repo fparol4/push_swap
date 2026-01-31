@@ -92,7 +92,11 @@ int	main(int argc, char **argv)
 		ft_stack_free(pswap.sb);
 		return (0);
 	}
-	ft_chunk_push(&pswap);
+	while (pswap.sa->size > 3)
+	{
+		path = ft_calc_cheap(pswap.sa, pswap.sb);
+		ft_path_exec(path, &pswap);
+	}
 	path = ft_sort_three(pswap.sa);
 	if (path)
 		ft_path_exec(path, &pswap);

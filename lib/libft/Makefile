@@ -50,7 +50,8 @@ SRC     = util/ft_isalpha.c \
           ds/linked-list/ft_lstclear.c \
           ds/linked-list/ft_lstiter.c \
           ds/linked-list/ft_lstmap.c \
-          ds/stack/ft_stack.c
+          ds/stack/ft_stack.c \
+          ds/stack/ft_stack_mov.c
 
 OBJS = $(SRC:.c=.o)
 

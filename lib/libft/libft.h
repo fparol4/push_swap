@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardozo <fcardozo@student.42.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/30 21:29:11 by fcardozo         #+#    #+#             */
-/*   Updated: 2026/01/30 21:29:11 by fcardozo         ###   ########.fr       */
+/*   Created: 2026/01/30 22:05:39 by fcardozo         #+#    #+#             */
+/*   Updated: 2026/01/30 22:05:39 by fcardozo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ typedef struct s_node
 {
 	int				*value;
 	int				index;
-	int				rank;
 	struct s_node	*next;
 	struct s_node	*previous;
 }					t_node;

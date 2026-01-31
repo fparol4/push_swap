@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardozo <fcardozo@student.42.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/30 21:29:11 by fcardozo         #+#    #+#             */
-/*   Updated: 2026/01/30 21:29:11 by fcardozo         ###   ########.fr       */
+/*   Created: 2026/01/30 22:05:39 by fcardozo         #+#    #+#             */
+/*   Updated: 2026/01/30 22:05:39 by fcardozo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_padstart(char *str, int max_size, char placeholder)
 	int		i;
 	int		len;
 	int		diff;
-	char	pad[diff];
+	char	pad[32];
 	char	*str_wpad;
 
 	len = ft_strlen(str);
