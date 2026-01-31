@@ -28,4 +28,4 @@ Push_swap is a sorting challenge that uses two stacks (A and B) and a limited in
 - [42 subject PDF](https://cdn.intra.42.fr/pdf/pdf/96071/en.subject.pdf) — official specification covering evaluation rules, grading, and allowed instructions.
 - [Push_swap Visualizer by o-reo](https://github.com/o-reo/push_swap_visualizer) — helpful for understanding stack states as instructions are applied.
 - [GEMARTIN tester](https://github.com/gemartin99/Push-Swap-Tester) — automated script for stress testing the solver on Linux and macOS.
-- **AI usage**: ChatGPT/Cascade was used to (a) assist with rewriting the README to satisfy the new Chapter VII formatting requirements, and (b) previously aid in reverting chunk-based optimizations and restoring the baseline algorithmic flow. All generated content was reviewed and validated before inclusion.
+- **AI usage**: ChatGPT/Cascade was used to understand, test and debug parts of this code.

@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-static t_path	*ft_singlt_move(t_mov mov)
+static t_path	*ft_single_move(t_mov mov)
 {
 	t_step	step;
 
@@ -20,7 +20,7 @@ static t_path	*ft_singlt_move(t_mov mov)
 	return (ft_path_new(&step, 1));
 }
 
-static t_path	*ft_doublt_move(t_mov first, t_mov second)
+static t_path	*ft_double_move(t_mov first, t_mov second)
 {
 	t_step	steps[2];
 
@@ -41,14 +41,14 @@ t_path	*ft_sort_three(t_stack *s)
 	b = *s->head->next->value;
 	c = *s->head->next->next->value;
 	if (a > b && b < c && a < c)
-		return (ft_singlt_move(MOV_SA));
+		return (ft_single_move(MOV_SA));
 	if (a > b && b > c)
-		return (ft_doublt_move(MOV_SA, MOV_RRA));
+		return (ft_double_move(MOV_SA, MOV_RRA));
 	if (a > b && b < c && a > c)
-		return (ft_singlt_move(MOV_RA));
+		return (ft_single_move(MOV_RA));
 	if (a < b && b > c && a < c)
-		return (ft_doublt_move(MOV_SA, MOV_RA));
+		return (ft_double_move(MOV_SA, MOV_RA));
 	if (a < b && b > c && a > c)
-		return (ft_singlt_move(MOV_RRA));
+		return (ft_single_move(MOV_RRA));
 	return (NULL);
 }
