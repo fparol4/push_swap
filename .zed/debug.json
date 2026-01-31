@@ -1,0 +1,9 @@
+[
+	{
+		"label": "GDB",
+		"program": "$ZED_WORKTREE_ROOT/exec",
+		"args": ["7", "4", "2", "5"],
+		"request": "launch",
+		"adapter": "CodeLLDB",
+	},
+]
